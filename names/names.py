@@ -34,7 +34,7 @@ set_2 = set(names_2)
 
 for name in (set_1.intersection(set_2)):
     duplicates.append(name)
-# print(set_1.intersection(set_2))
+
 
 end_time = time.time()
 print (f"{len(duplicates)} duplicates:\n\n{', '.join(duplicates)}\n\n")

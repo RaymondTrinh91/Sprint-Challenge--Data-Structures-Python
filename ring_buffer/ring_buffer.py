@@ -8,18 +8,28 @@ class RingBuffer:
         self.storage = DoublyLinkedList()
 
     def append(self, item):
+        # If Ring Buffer is at capacity
         if self.storage.length == self.capacity:
-
+            # If Pointer is at None
+            # Start at Head
             if self.current == None:
+                # Move Pointer to next node
                 self.current = self.storage.head.next
+                # Remove current head and replace
                 self.storage.remove_from_head()
                 self.storage.add_to_head(item)
+            # If Pointer is at tail
             elif self.current == self.storage.tail:
+                # Move point back into position for Head
                 self.current = None
+                # Remove current tail and replace
                 self.storage.remove_from_tail()
                 self.storage.add_to_tail(item)
+            # Else Point is in middle of DLL
             else:
+                # Set pointer to next node
                 self.current = self.current.next
+                # Remove previous node and replace
                 self.current.prev.delete()
                 self.current.insert_before(item)
         else:
@@ -28,7 +38,7 @@ class RingBuffer:
     def get(self):
         # Note:  This is the only [] allowed
         list_buffer_contents = []
-
+        
         node = self.storage.head
 
         while node:
